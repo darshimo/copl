@@ -2,11 +2,12 @@
 extern crate ruly;
 
 mod evalml1;
+mod evalnatexp;
 mod nat;
 mod tmp;
 
 fn main() {
-    let s = "3 + (if -23 < -2 * 8 then 8 else 2) + 4 evalto 15";
+    let s = "Z * (S(S(Z)) + S(S(Z))) evalto Z";
 
-    evalml1::f(s);
+    evalnatexp::f(s);
 }
