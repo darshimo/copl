@@ -1,4 +1,4 @@
-pub mod rules;
+mod rules;
 
 use regex::Regex;
 use rules::{
@@ -10,17 +10,17 @@ use rules::{
 use ruly::Parse;
 
 enum Rule {
-    PZero(),
+    PZero,
     PSucc(Derivation),
-    TZero(),
+    TZero,
     TSucc(Derivation, Derivation),
 }
 impl std::fmt::Display for Rule {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
         match self {
-            PZero() => write!(f, "P-Zero {}{}", r"{", r"}"),
+            PZero => write!(f, "P-Zero {}{}", r"{", r"}"),
             PSucc(d1) => write!(f, "P-Succ {} {}; {}", r"{", d1, r"}"),
-            TZero() => write!(f, "T-Zero {}{}", r"{", r"}"),
+            TZero => write!(f, "T-Zero {}{}", r"{", r"}"),
             TSucc(d1, d2) => write!(f, "T-Succ {} {}; {}; {}", r"{", d1, d2, r"}"),
         }
     }
@@ -47,7 +47,7 @@ fn derive_plus(n1: &Nat, n2: &Nat) -> (Nat, Derivation) {
                     String::from("is"),
                     Box::new(n2.clone()),
                 ),
-                Box::new(PZero()),
+                Box::new(PZero),
             ),
         ),
 
@@ -89,7 +89,7 @@ fn derive_times(n1: &Nat, n2: &Nat) -> (Nat, Derivation) {
                     String::from("is"),
                     Box::new(n1.clone()),
                 ),
-                Box::new(TZero()),
+                Box::new(TZero),
             ),
         ),
 
@@ -127,7 +127,6 @@ fn derive(j: &Judgement) -> Derivation {
             let (ans, d) = derive_times(&n1, &n2);
             if n3 as &Nat == &ans {
                 return d;
-            } else {
             }
         }
     }

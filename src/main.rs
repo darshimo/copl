@@ -1,11 +1,12 @@
 #[macro_use]
 extern crate ruly;
 
+mod evalml1;
 mod nat;
 mod tmp;
 
 fn main() {
-    let s = "S(S(Z)) times S(S(Z)) is S(S(S(S(Z))))";
+    let s = "3 + (if -23 < -2 * 8 then 8 else 2) + 4 evalto 15";
 
-    nat::f(s);
+    evalml1::f(s);
 }
