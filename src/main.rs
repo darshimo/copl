@@ -4,6 +4,7 @@ use std::{
     fs, io,
 };
 
+mod comparenat1;
 mod nat;
 
 struct Map(HashMap<&'static str, fn(&str) -> io::Result<String>>);
@@ -48,6 +49,7 @@ fn main() -> io::Result<()> {
     let map = {
         let mut map = Map::new();
         map.insert("Nat", nat::f);
+        map.insert("CompareNat1", comparenat1::f);
         map
     };
 
