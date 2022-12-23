@@ -1,3 +1,57 @@
-fn main() {
-    println!("Hello, world!");
+use std::{
+    collections::HashMap,
+    env::{self, Args},
+    fs, io,
+};
+
+struct Map(HashMap<&'static str, fn(&str) -> io::Result<String>>);
+impl Map {
+    fn new() -> Self {
+        Map(HashMap::new())
+    }
+
+    fn insert(&mut self, system: &'static str, f: fn(&str) -> io::Result<String>) {
+        self.0.insert(system, f);
+    }
+
+    fn get(&self, system: &str) -> io::Result<&for<'r> fn(&'r str) -> io::Result<String>> {
+        if let Some(f) = self.0.get(system) {
+            Ok(f)
+        } else {
+            Err(io::Error::new(
+                io::ErrorKind::InvalidInput,
+                format!("No such system: {}", system),
+            ))
+        }
+    }
+}
+
+fn get_arg(args: &mut Args, error_message: &str) -> io::Result<String> {
+    if let Some(s) = args.next() {
+        Ok(s)
+    } else {
+        Err(io::Error::new(
+            io::ErrorKind::InvalidInput,
+            error_message.to_string(),
+        ))
+    }
+}
+
+fn main() -> io::Result<()> {
+    let mut args = env::args();
+    args.next();
+
+    let system = get_arg(&mut args, "input system name.")?;
+
+    let map = Map::new();
+
+    let f = map.get(&system)?;
+
+    let filepath = get_arg(&mut args, "input path to file.")?;
+
+    let judgement = fs::read_to_string(filepath)?;
+
+    println!("{}", f(&judgement)?);
+
+    Ok(())
 }
