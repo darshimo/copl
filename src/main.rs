@@ -4,6 +4,8 @@ use std::{
     fs, io,
 };
 
+mod nat;
+
 struct Map(HashMap<&'static str, fn(&str) -> io::Result<String>>);
 impl Map {
     fn new() -> Self {
@@ -43,7 +45,11 @@ fn main() -> io::Result<()> {
 
     let system = get_arg(&mut args, "input system name.")?;
 
-    let map = Map::new();
+    let map = {
+        let mut map = Map::new();
+        map.insert("Nat", nat::f);
+        map
+    };
 
     let f = map.get(&system)?;
 
