@@ -9,6 +9,7 @@ mod comparenat2;
 mod comparenat3;
 mod evalnatexp;
 mod nat;
+mod reducenatexp;
 
 struct Map(HashMap<&'static str, fn(&str) -> io::Result<String>>);
 impl Map {
@@ -56,6 +57,7 @@ fn main() -> io::Result<()> {
         map.insert("CompareNat2", comparenat2::f);
         map.insert("CompareNat3", comparenat3::f);
         map.insert("EvalNatExp", evalnatexp::f);
+        map.insert("ReduceNatExp", reducenatexp::f);
         map
     };
 
