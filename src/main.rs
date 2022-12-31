@@ -7,6 +7,7 @@ use std::{
 mod comparenat1;
 mod comparenat2;
 mod comparenat3;
+mod evalml1;
 mod evalnatexp;
 mod nat;
 mod reducenatexp;
@@ -58,6 +59,7 @@ fn main() -> io::Result<()> {
         map.insert("CompareNat3", comparenat3::f);
         map.insert("EvalNatExp", evalnatexp::f);
         map.insert("ReduceNatExp", reducenatexp::f);
+        map.insert("EvalML1", evalml1::f);
         map
     };
 
