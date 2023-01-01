@@ -11,6 +11,7 @@ mod evalml1;
 mod evalml2;
 mod evalml3;
 mod evalml4;
+mod evalml5;
 mod evalnatexp;
 mod nat;
 mod reducenatexp;
@@ -66,6 +67,7 @@ fn main() -> io::Result<()> {
         map.insert("EvalML2", evalml2::f);
         map.insert("EvalML3", evalml3::f);
         map.insert("EvalML4", evalml4::f);
+        map.insert("EvalML5", evalml5::f);
         map
     };
 
