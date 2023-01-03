@@ -4,6 +4,7 @@ use std::{
     fs, io,
 };
 
+mod common;
 mod comparenat1;
 mod comparenat2;
 mod comparenat3;
@@ -17,6 +18,7 @@ mod evalnatexp;
 mod namelessml3;
 mod nat;
 mod reducenatexp;
+mod typingml4;
 
 struct Map(HashMap<&'static str, fn(&str) -> io::Result<String>>);
 impl Map {
@@ -72,6 +74,7 @@ fn main() -> io::Result<()> {
         map.insert("EvalNamelessML3", evalnamelessml3::f);
         map.insert("EvalML4", evalml4::f);
         map.insert("EvalML5", evalml5::f);
+        map.insert("TypingML4", typingml4::f);
         map
     };
 
