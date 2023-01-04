@@ -17,6 +17,7 @@ mod evalnamelessml3;
 mod evalnatexp;
 mod namelessml3;
 mod nat;
+mod polytypingml4;
 mod reducenatexp;
 mod typingml4;
 
@@ -75,6 +76,7 @@ fn main() -> io::Result<()> {
         map.insert("EvalML4", evalml4::f);
         map.insert("EvalML5", evalml5::f);
         map.insert("TypingML4", typingml4::f);
+        map.insert("PolyTypingML4", polytypingml4::f);
         map
     };
 
