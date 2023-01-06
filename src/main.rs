@@ -5,6 +5,7 @@ use std::{
 };
 
 mod common;
+
 mod comparenat1;
 mod comparenat2;
 mod comparenat3;
@@ -20,6 +21,7 @@ mod nat;
 mod polytypingml4;
 mod reducenatexp;
 mod typingml4;
+mod while_;
 
 struct Map(HashMap<&'static str, fn(&str) -> io::Result<String>>);
 impl Map {
@@ -77,6 +79,7 @@ fn main() -> io::Result<()> {
         map.insert("EvalML5", evalml5::f);
         map.insert("TypingML4", typingml4::f);
         map.insert("PolyTypingML4", polytypingml4::f);
+        map.insert("While", while_::f);
         map
     };
 
