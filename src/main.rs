@@ -18,6 +18,7 @@ mod evalml4;
 mod evalml5;
 mod evalnamelessml3;
 mod evalnatexp;
+mod evalrefml3;
 mod namelessml3;
 mod nat;
 mod polytypingml4;
@@ -84,6 +85,7 @@ fn main() -> io::Result<()> {
         map.insert("While", while_::f);
         map.insert("EvalContML1", evalcontml1::f);
         map.insert("EvalContML4", evalcontml4::f);
+        map.insert("EvalRefML3", evalrefml3::f);
         map
     };
 
