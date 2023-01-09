@@ -9,6 +9,7 @@ mod common;
 mod comparenat1;
 mod comparenat2;
 mod comparenat3;
+mod evalcontml1;
 mod evalml1;
 mod evalml2;
 mod evalml3;
@@ -80,6 +81,7 @@ fn main() -> io::Result<()> {
         map.insert("TypingML4", typingml4::f);
         map.insert("PolyTypingML4", polytypingml4::f);
         map.insert("While", while_::f);
+        map.insert("EvalContML1", evalcontml1::f);
         map
     };
 
